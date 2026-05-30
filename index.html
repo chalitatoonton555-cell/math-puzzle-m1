@@ -314,6 +314,56 @@ event.target.dataset.answer
 
 }
 
+function allowDrop(event){
+event.preventDefault();
+}
+
+function drop(event){
+
+event.preventDefault();
+
+let draggedAnswer =
+event.dataTransfer.getData("text");
+
+let correctAnswer =
+event.target.dataset.answer;
+
+if(draggedAnswer == correctAnswer){
+
+alert("ถูกต้อง");
+
+}else{
+
+alert("ลองใหม่อีกครั้ง");
+
+}
+
+}
+
+function createBoard(){
+
+let html = '<div class="board">';
+
+for(let i=0;i<questions.length;i++){
+
+html += `
+<div
+class="cell"
+data-answer="${questions[i].a}"
+ondrop="drop(event)"
+ondragover="allowDrop(event)"
+>
+${questions[i].q}
+</div>
+`;
+
+}
+
+html += '</div>';
+
+return html;
+
+}
 function showQuestion(){
 
 document.getElementById("game").innerHTML = `
@@ -322,22 +372,12 @@ document.getElementById("game").innerHTML = `
 
 <p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
 
-${createPuzzle()}
+${createBoard()}
 <hr>
 
 <h3>ชิ้นคำตอบ</h3>
 
 ${createAnswers()}
-
-<div class="board">
-
-<div class="cell">(-3) × 4</div>
-<div class="cell">(-5) × (-6)</div>
-<div class="cell">7 × (-8)</div>
-
-...
-
-</div>
 
 <input id="answer">
 
