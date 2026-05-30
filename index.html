@@ -140,6 +140,7 @@ let currentQuestion = 0;
 let score = 0;
 let questions = [];
 let selectedImage = "";
+let openedPieces = [];
 
 const worksheets = [
 
@@ -236,6 +237,7 @@ function startGame(){
 
 currentQuestion = 0;
 score = 0;
+openedPieces = [];
 
 let randomWorksheet =
 Math.floor(Math.random() * worksheets.length);
@@ -330,7 +332,11 @@ event.target.dataset.answer;
 
 if(draggedAnswer == correctAnswer){
 
-alert("ถูกต้อง");
+openedPieces.push(
+event.target.dataset.index
+);
+
+showQuestion();
 
 }else{
 
@@ -350,6 +356,7 @@ html += `
 <div
 class="cell"
 data-answer="${questions[i].a}"
+data-index="${i}"
 ondrop="drop(event)"
 ondragover="allowDrop(event)"
 >
@@ -364,6 +371,47 @@ html += '</div>';
 return html;
 
 }
+
+function createPuzzle(){
+
+let html = '<div class="puzzle">';
+
+for(let i=0;i<12;i++){
+
+if(openedPieces.includes(String(i))){
+
+html += `
+<div class="piece">
+
+<img
+src="${selectedImage}"
+style="
+width:400%;
+height:300%;
+object-fit:cover;
+margin-left:-${(i%4)*100}%;
+margin-top:-${Math.floor(i/4)*100}%;
+">
+
+</div>
+`;
+
+}else{
+
+html += `
+<div class="piece"></div>
+`;
+
+}
+
+}
+
+html += '</div>';
+
+return html;
+
+}
+    
 function showQuestion(){
 
 document.getElementById("game").innerHTML = `
@@ -371,6 +419,7 @@ document.getElementById("game").innerHTML = `
 <h2>จิ๊กซอว์การคูณจำนวนเต็ม</h2>
 
 <p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
+${createPuzzle()}
 
 ${createBoard()}
 <hr>
