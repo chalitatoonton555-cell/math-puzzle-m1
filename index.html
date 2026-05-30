@@ -79,6 +79,7 @@ placeholder="กรอกชื่อ">
 let currentQuestion = 0;
 let score = 0;
 let questions = [];
+let selectedImage = "";
 
 const worksheets = [
 
@@ -174,6 +175,12 @@ Math.floor(Math.random() * worksheets.length);
 
 questions =
 worksheets[randomWorksheet];
+
+let randomImage =
+Math.floor(Math.random() * images.length);
+
+selectedImage =
+images[randomImage];
 
 showQuestion();
 
