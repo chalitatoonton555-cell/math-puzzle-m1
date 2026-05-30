@@ -77,7 +77,73 @@ document.getElementById("answer").value;
 
 if(ans == -12){
 
+let currentQuestion = 0;
+
+const questions = [
+{q:"(-3) × 4",a:-12},
+{q:"(-5) × (-6)",a:30},
+{q:"7 × (-8)",a:-56}
+];
+
+function startGame(){
+showQuestion();
+}
+
+function showQuestion(){
+
+document.querySelector(".box").innerHTML = `
+
+<h2>ใบงานที่ 1</h2>
+
+<p>
+ข้อ ${currentQuestion+1} :
+${questions[currentQuestion].q}
+= ?
+</p>
+
+<input id="answer">
+
+<br><br>
+
+<button onclick="checkAnswer()">
+ตรวจคำตอบ
+</button>
+
+`;
+
+}
+
+function checkAnswer(){
+
+let ans =
+document.getElementById("answer").value;
+
+if(ans == questions[currentQuestion].a){
+
 alert("ตอบถูก");
+
+currentQuestion++;
+
+if(currentQuestion < questions.length){
+
+showQuestion();
+
+}else{
+
+document.querySelector(".box").innerHTML = `
+<h2>🎉 ทำครบแล้ว</h2>
+<p>ยินดีด้วย</p>
+`;
+
+}
+
+}else{
+
+alert("ลองใหม่อีกครั้ง");
+
+}
+
+}
 
 }else{
 
