@@ -164,7 +164,14 @@ const worksheets = [
 ]
 
 ];
-
+const images = [
+"IMG_1460.png",
+"IMG_1461.png",
+"IMG_1462.png",
+"IMG_1463.png",
+"IMG_1464.png"
+];
+    
 function startGame(){
 
 currentQuestion = 0;
@@ -240,28 +247,33 @@ alert("ลองใหม่อีกครั้ง");
 
 }
 
-function showSuccess(){
+function showQuestion(){
 
 document.getElementById("game").innerHTML = `
 
-<h2>🎉 ทำใบงานครบ 12 ข้อแล้ว</h2>
+<h2>ใบงานที่ 1</h2>
 
-<p>ยินดีด้วย</p>
-
-<p>คะแนน ${score} / 12</p>
+<p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
 
 <img src="${selectedImage}">
 
+<p>ข้อ ${currentQuestion + 1}</p>
+
+<h3>
+${questions[currentQuestion].q} = ?
+</h3>
+
+<input id="answer">
+
 <br><br>
 
-<button onclick="startGame()">
-ทำใหม่อีกครั้ง
+<button onclick="checkAnswer()">
+ตรวจคำตอบ
 </button>
 
 `;
 
 }
-
 </script>
 
 </body>
