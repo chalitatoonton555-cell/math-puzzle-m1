@@ -59,10 +59,11 @@ margin:auto;
 }
 
 .piece{
-width:100%;
-aspect-ratio:1/1;
-background:#ddd;
-overflow:hidden;
+    width:100%;
+    aspect-ratio:1/1;
+    background:#ddd;
+    overflow:hidden;
+    position:relative;
 }
 
 </style>
@@ -250,9 +251,10 @@ src="${selectedImage}"
 style="
 width:400%;
 height:300%;
-object-fit:cover;
-margin-left:-${(i%4)*100}%;
+max-width:none;
+border-radius:0;
 margin-top:-${Math.floor(i/4)*100}%;
+margin-left:-${(i%4)*100}%;
 ">
 
 </div>
@@ -277,7 +279,7 @@ function showQuestion(){
 
 document.getElementById("game").innerHTML = `
 
-<h2>ใบงานที่ 1</h2>
+<h2>จิ๊กซอว์การคูณจำนวนเต็ม</h2>
 
 <p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
 
