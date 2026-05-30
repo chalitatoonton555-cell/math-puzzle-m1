@@ -343,11 +343,10 @@ function drag(event){
 
 event.dataTransfer.setData(
 "text",
-event.target.dataset.answer
+event.currentTarget.dataset.answer
 );
 
 }
-
 function allowDrop(event){
 event.preventDefault();
 }
@@ -461,22 +460,23 @@ ${createBoard()}
 
 ${createAnswers()}
 
-}
-function showSuccess(){
+function showQuestion(){
 
 document.getElementById("game").innerHTML = `
 
-<h2>🎉 ทำใบงานครบ 12 ข้อแล้ว</h2>
+<h2>จิ๊กซอว์การคูณจำนวนเต็ม</h2>
 
-<p>คะแนน ${score} / 12</p>
+<p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
 
-<img src="${selectedImage}">
+${createPuzzle()}
 
-<br><br>
+${createBoard()}
 
-<button onclick="startGame()">
-ทำใหม่อีกครั้ง
-</button>
+<hr>
+
+<h3>ชิ้นคำตอบ</h3>
+
+${createAnswers()}
 
 `;
 
