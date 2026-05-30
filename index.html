@@ -50,8 +50,7 @@ img{
     margin-top:20px;
 }
 
-</style>
-    .puzzle{
+.puzzle{
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:2px;
@@ -66,6 +65,7 @@ background:#ddd;
 overflow:hidden;
 }
 
+</style>
 </head>
 
 <body>
@@ -251,11 +251,8 @@ style="
 width:400%;
 height:300%;
 object-fit:cover;
-transform:
-translate(
--${(i%4)*100}%,
--${Math.floor(i/4)*100}%
-);
+margin-left:-${(i%4)*100}%;
+margin-top:-${Math.floor(i/4)*100}%;
 ">
 
 </div>
