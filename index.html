@@ -81,6 +81,36 @@ border-radius:10px;
 font-size:20px;
 font-weight:bold;
 }
+
+.answer-piece{
+background:#4caf50;
+color:white;
+padding:15px;
+border-radius:10px;
+font-size:20px;
+font-weight:bold;
+cursor:grab;
+}
+
+.board{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-bottom:20px;
+}
+
+.cell{
+background:#ddd;
+padding:20px;
+min-height:80px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+font-weight:bold;
+}
+    
 </style>
 </head>
 
@@ -256,8 +286,13 @@ let html = '<div class="answers">';
 
 for(let i=0;i<questions.length;i++){
 
-html += `
-<div class="answer-piece">
+html += `<div
+class="answer-piece"
+draggable="true"
+ondragstart="drag(event)"
+id="answer${i}"
+data-answer="${questions[i].a}"
+>
 ${questions[i].a}
 </div>
 `;
@@ -269,6 +304,16 @@ html += '</div>';
 return html;
 
 }
+
+function drag(event){
+
+event.dataTransfer.setData(
+"text",
+event.target.dataset.answer
+);
+
+}
+
 function showQuestion(){
 
 document.getElementById("game").innerHTML = `
