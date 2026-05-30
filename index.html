@@ -110,6 +110,24 @@ justify-content:center;
 text-align:center;
 font-weight:bold;
 }
+
+.answer-piece{
+position:relative;
+overflow:hidden;
+height:100px;
+cursor:grab;
+}
+
+.answer-number{
+position:absolute;
+bottom:5px;
+right:5px;
+background:rgba(0,0,0,0.7);
+color:white;
+padding:5px 8px;
+border-radius:5px;
+font-weight:bold;
+}
     
 </style>
 </head>
@@ -288,13 +306,24 @@ let html = '<div class="answers">';
 
 for(let i=0;i<questions.length;i++){
 
-html += `<div
+<div
 class="answer-piece"
 draggable="true"
 ondragstart="drag(event)"
-id="answer${i}"
 data-answer="${questions[i].a}"
 >
+
+<img
+src="${selectedImage}"
+style="
+width:400%;
+height:300%;
+object-fit:cover;
+margin-left:-${(i%4)*100}%;
+margin-top:-${Math.floor(i/4)*100}%;
+">
+
+<div class="answer-number">
 ${questions[i].a}
 </div>
 `;
