@@ -52,7 +52,39 @@ placeholder="กรอกชื่อของนักเรียน">
 
 <script>
 function startGame(){
-    alert("เริ่มทำใบงานแล้ว");
+
+document.querySelector(".box").innerHTML = `
+<h2>ใบงานที่ 1</h2>
+
+<p>ข้อ 1 : (-3) × 4 = ?</p>
+
+<input id="answer">
+
+<br><br>
+
+<button onclick="checkAnswer()">
+ตรวจคำตอบ
+</button>
+
+`;
+
+}
+
+function checkAnswer(){
+
+let ans =
+document.getElementById("answer").value;
+
+if(ans == -12){
+
+alert("ตอบถูก");
+
+}else{
+
+alert("ลองใหม่อีกครั้ง");
+
+}
+
 }
 </script>
 
