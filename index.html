@@ -51,6 +51,20 @@ img{
 }
 
 </style>
+    .puzzle{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:2px;
+max-width:500px;
+margin:auto;
+}
+
+.piece{
+width:100%;
+aspect-ratio:1/1;
+background:#ddd;
+overflow:hidden;
+}
 
 </head>
 
@@ -220,7 +234,48 @@ alert("ลองใหม่อีกครั้ง");
 }
 
 }
+function createPuzzle(){
 
+let html = '<div class="puzzle">';
+
+for(let i=0;i<12;i++){
+
+if(i < score){
+
+html += `
+<div class="piece">
+
+<img
+src="${selectedImage}"
+style="
+width:400%;
+height:300%;
+object-fit:cover;
+transform:
+translate(
+-${(i%4)*100}%,
+-${Math.floor(i/4)*100}%
+);
+">
+
+</div>
+`;
+
+}else{
+
+html += `
+<div class="piece"></div>
+`;
+
+}
+
+}
+
+html += '</div>';
+
+return html;
+
+}
 function showQuestion(){
 
 document.getElementById("game").innerHTML = `
@@ -229,22 +284,7 @@ document.getElementById("game").innerHTML = `
 
 <p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
 
-<div
-style="
-width:100%;
-height:${score * 40}px;
-overflow:hidden;
-margin:auto;
-">
-
-<img
-src="${selectedImage}"
-style="
-width:100%;
-display:block;
-">
-
-</div>
+${createPuzzle()}
 
 <p>ข้อ ${currentQuestion + 1}</p>
 
