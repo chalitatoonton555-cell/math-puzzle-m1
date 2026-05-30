@@ -306,6 +306,7 @@ let html = '<div class="answers">';
 
 for(let i=0;i<questions.length;i++){
 
+html += `
 <div
 class="answer-piece"
 draggable="true"
@@ -325,6 +326,8 @@ margin-top:-${Math.floor(i/4)*100}%;
 
 <div class="answer-number">
 ${questions[i].a}
+</div>
+
 </div>
 `;
 
@@ -364,6 +367,7 @@ if(draggedAnswer == correctAnswer){
 openedPieces.push(
 event.target.dataset.index
 );
+event.target.innerHTML = "✅ ถูกต้อง";
 
 showQuestion();
 
@@ -456,16 +460,6 @@ ${createBoard()}
 <h3>ชิ้นคำตอบ</h3>
 
 ${createAnswers()}
-
-<input id="answer">
-
-<br><br>
-
-<button onclick="checkAnswer()">
-ตรวจคำตอบ
-</button>
-
-`;
 
 }
 function showSuccess(){
