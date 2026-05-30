@@ -451,32 +451,33 @@ document.getElementById("game").innerHTML = `
 <h2>จิ๊กซอว์การคูณจำนวนเต็ม</h2>
 
 <p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
+
 ${createPuzzle()}
 
 ${createBoard()}
+
 <hr>
 
 <h3>ชิ้นคำตอบ</h3>
 
 ${createAnswers()}
 
-function showQuestion(){
+`;
+
+}
+function showSuccess(){
 
 document.getElementById("game").innerHTML = `
 
-<h2>จิ๊กซอว์การคูณจำนวนเต็ม</h2>
+<h2>🎉 ทำสำเร็จแล้ว</h2>
 
-<p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
+<img src="${selectedImage}">
 
-${createPuzzle()}
+<br><br>
 
-${createBoard()}
-
-<hr>
-
-<h3>ชิ้นคำตอบ</h3>
-
-${createAnswers()}
+<button onclick="startGame()">
+เล่นอีกครั้ง
+</button>
 
 `;
 
