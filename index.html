@@ -193,32 +193,6 @@ showQuestion();
 
 }
 
-function showQuestion(){
-
-document.getElementById("game").innerHTML = `
-
-<h2>ใบงานที่ 1</h2>
-
-<p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
-
-<p>ข้อ ${currentQuestion + 1}</p>
-
-<h3>
-${questions[currentQuestion].q} = ?
-</h3>
-
-<input id="answer">
-
-<br><br>
-
-<button onclick="checkAnswer()">
-ตรวจคำตอบ
-</button>
-
-`;
-
-}
-
 function checkAnswer(){
 
 let ans =
@@ -255,7 +229,22 @@ document.getElementById("game").innerHTML = `
 
 <p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
 
-<img src="${selectedImage}">
+<div
+style="
+width:100%;
+height:${score * 40}px;
+overflow:hidden;
+margin:auto;
+">
+
+<img
+src="${selectedImage}"
+style="
+width:100%;
+display:block;
+">
+
+</div>
 
 <p>ข้อ ${currentQuestion + 1}</p>
 
@@ -269,6 +258,25 @@ ${questions[currentQuestion].q} = ?
 
 <button onclick="checkAnswer()">
 ตรวจคำตอบ
+</button>
+
+`;
+
+}
+function showSuccess(){
+
+document.getElementById("game").innerHTML = `
+
+<h2>🎉 ทำใบงานครบ 12 ข้อแล้ว</h2>
+
+<p>คะแนน ${score} / 12</p>
+
+<img src="${selectedImage}">
+
+<br><br>
+
+<button onclick="startGame()">
+ทำใหม่อีกครั้ง
 </button>
 
 `;
