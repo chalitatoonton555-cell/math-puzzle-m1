@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>จิ๊กซอว์การคูณจำนวนเต็ม</title>
 
 <style>
+
 body{
     font-family:Tahoma,sans-serif;
     background:#f5f5f5;
@@ -19,6 +21,13 @@ body{
     margin:auto;
     padding:20px;
     border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input{
+    padding:10px;
+    font-size:18px;
+    width:150px;
 }
 
 button{
@@ -28,21 +37,27 @@ button{
     padding:12px 20px;
     border-radius:10px;
     font-size:18px;
+    cursor:pointer;
 }
+
+button:hover{
+    background:#f57c00;
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="box">
+<div class="box" id="game">
 
 <h1>🧩 จิ๊กซอว์การคูณจำนวนเต็ม</h1>
 
 <p>นักเรียนชั้นมัธยมศึกษาปีที่ 1</p>
 
-<input type="text"
-placeholder="กรอกชื่อของนักเรียน">
+<input type="text" id="studentName"
+placeholder="กรอกชื่อ">
 
 <br><br>
 
@@ -50,71 +65,84 @@ placeholder="กรอกชื่อของนักเรียน">
 เริ่มทำใบงาน
 </button>
 
+</div>
+
 <script>
 
 let currentQuestion = 0;
 
 const questions = [
-  {q:"(-3) × 4",a:-12},
-  {q:"(-5) × (-6)",a:30},
-  {q:"7 × (-8)",a:-56}
+
+{q:"(-3) × 4",a:-12},
+{q:"(-5) × (-6)",a:30},
+{q:"7 × (-8)",a:-56}
+
 ];
 
 function startGame(){
-  showQuestion();
+
+showQuestion();
+
 }
 
 function showQuestion(){
 
-  document.querySelector(".box").innerHTML = `
+document.getElementById("game").innerHTML = `
 
-    <h2>ใบงานที่ 1</h2>
+<h2>ใบงานที่ 1</h2>
 
-    <p>
-      ข้อ ${currentQuestion + 1} :
-      ${questions[currentQuestion].q}
-      = ?
-    </p>
+<p>
+ข้อ ${currentQuestion + 1}
+</p>
 
-    <input id="answer">
+<h3>
+${questions[currentQuestion].q} = ?
+</h3>
 
-    <br><br>
+<input id="answer">
 
-    <button onclick="checkAnswer()">
-      ตรวจคำตอบ
-    </button>
+<br><br>
 
-  `;
+<button onclick="checkAnswer()">
+ตรวจคำตอบ
+</button>
+
+`;
+
 }
 
 function checkAnswer(){
 
-  let ans = document.getElementById("answer").value;
+let ans =
+document.getElementById("answer").value;
 
-  if(ans == questions[currentQuestion].a){
+if(ans == questions[currentQuestion].a){
 
-    alert("ตอบถูก");
+currentQuestion++;
 
-    currentQuestion++;
+if(currentQuestion < questions.length){
 
-    if(currentQuestion < questions.length){
+showQuestion();
 
-      showQuestion();
+}else{
 
-    }else{
+document.getElementById("game").innerHTML = `
 
-      document.querySelector(".box").innerHTML = `
-        <h2>🎉 ทำครบแล้ว</h2>
-        <p>ยินดีด้วย</p>
-      `;
+<h2>🎉 ทำครบแล้ว</h2>
 
-    }
+<p>
+ยินดีด้วย
+</p>
 
-  }else{
+`;
 
-    alert("ลองใหม่อีกครั้ง");
+}
 
-  }
+}else{
+
+alert("ลองใหม่อีกครั้ง");
+
+}
 
 }
 
