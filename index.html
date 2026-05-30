@@ -66,6 +66,21 @@ margin:auto;
     position:relative;
 }
 
+.answers{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+margin-top:20px;
+}
+
+.answer-piece{
+background:#4caf50;
+color:white;
+padding:15px;
+border-radius:10px;
+font-size:20px;
+font-weight:bold;
+}
 </style>
 </head>
 
@@ -235,38 +250,17 @@ alert("ลองใหม่อีกครั้ง");
 }
 
 }
-function createPuzzle(){
+function createAnswers(){
 
-let html = '<div class="puzzle">';
+let html = '<div class="answers">';
 
-for(let i=0;i<12;i++){
-
-if(i < score){
+for(let i=0;i<questions.length;i++){
 
 html += `
-<div class="piece">
-
-<img
-src="${selectedImage}"
-style="
-width:400%;
-height:300%;
-max-width:none;
-border-radius:0;
-margin-top:-${Math.floor(i/4)*100}%;
-margin-left:-${(i%4)*100}%;
-">
-
+<div class="answer-piece">
+${questions[i].a}
 </div>
 `;
-
-}else{
-
-html += `
-<div class="piece"></div>
-`;
-
-}
 
 }
 
@@ -284,12 +278,21 @@ document.getElementById("game").innerHTML = `
 <p><b>ตอบถูกแล้ว ${score} / 12 ข้อ</b></p>
 
 ${createPuzzle()}
+<hr>
 
-<p>ข้อ ${currentQuestion + 1}</p>
+<h3>ชิ้นคำตอบ</h3>
 
-<h3>
-${questions[currentQuestion].q} = ?
-</h3>
+${createAnswers()}
+
+<div class="board">
+
+<div class="cell">(-3) × 4</div>
+<div class="cell">(-5) × (-6)</div>
+<div class="cell">7 × (-8)</div>
+
+...
+
+</div>
 
 <input id="answer">
 
